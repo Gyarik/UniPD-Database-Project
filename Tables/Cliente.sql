@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Cliente;
 
 CREATE TABLE Cliente (
     p_iva VARCHAR(11) NOT NULL,
-    nome_azienda VARCHAR(50) NOT NULL
+    nome_azienda VARCHAR(50) NOT NULL,
     PRIMARY KEY (p_iva)
 );
 
