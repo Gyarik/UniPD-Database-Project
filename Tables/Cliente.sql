@@ -16,5 +16,5 @@ VALUES
     ('56720480328', 'ACE Chemicals'),
     ('48503850165', 'Super Track'),
     ('70779410680', 'Marte Progetti'),
-    ('38481280865', 'Falcone Industries')
+    ('38481280865', 'Falcone Industries');
 
