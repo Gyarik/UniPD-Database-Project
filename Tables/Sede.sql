@@ -11,7 +11,7 @@ CREATE TABLE Sede (
 );
 
 INSERT INTO Sede(id_sede, n_civico, via, citta, provincia, cap)
-values
+VALUES
 	(389, '81', 'Via Ospedale Civile', 'Padova', 'PD', '35121'),
 	(437, '9', 'Via Tumedei Casalis', 'Carmagnola', 'TO', '10022'),
 	(594, '74', 'Via Delle Pianazze', 'La Spezia', 'SP', '19136'),
