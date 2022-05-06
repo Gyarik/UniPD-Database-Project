@@ -1,5 +1,5 @@
-DROP TYPE IF EXISTS sviluppo;
 DROP TABLE IF EXISTS Team_Sviluppo;
+DROP TYPE IF EXISTS sviluppo;
 
 CREATE TYPE sviluppo AS ENUM ('Manager Progetto', 'Sviluppatore', 'Tester', 'Analista Software');
 
