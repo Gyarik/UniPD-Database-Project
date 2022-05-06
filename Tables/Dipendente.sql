@@ -36,4 +36,8 @@ VALUES
     (123, 437, 'Salomone', 'Nevoloso', '1995-11-5'),
     (432, 594, 'Ulrico', 'Groth', '1996-12-5'),
     (444, 239, 'Tizio', 'Camesaschi', '1974-12-25'),
-    (998, 312, 'Ludovico', 'Deodati', '1986-4-3');
+    (998, 312, 'Ludovico', 'Deodati', '1986-4-3'),
+    (787, 389, 'Michele', 'Ballabene', '1998-5-30'),
+    (347, 437, 'Massimiliano', 'Sangues', '1998-3-7'),
+    (789, 594, 'Edmonda', 'Mughini', '1995-6-23'),
+    (989, 239, 'Alessio', 'Rigli', '1998-12-24');
