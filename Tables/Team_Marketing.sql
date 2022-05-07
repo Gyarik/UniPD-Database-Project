@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Team_Marketing;
 DROP TYPE IF EXISTS marketing;
 
-CREATE TYPE marketing AS ENUM ('Addetto alle Vendite', 'Addetto alle Prozione', 'Analista di Mercato');
+CREATE TYPE marketing AS ENUM ('Addetto alle Vendite', 'Addetto alle Promozioni', 'Analista di Mercato');
 
 CREATE TABLE Team_Marketing (
     id_dip INT NOT NULL,
