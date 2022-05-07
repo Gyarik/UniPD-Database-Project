@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Progetto;
+DROP TABLE IF EXISTS Progetto CASCADE;
 
 CREATE TABLE Progetto (
 	id_prog INT NOT NULL,
@@ -15,8 +15,8 @@ VALUES
 	(3943, 'ATM Intesa', 'Software ATM per banche Intesa Sanpaolo', '2021-12-16'),
 	(5487, 'MedData', 'Server Database + Front-end per ospedali', '2021-05-06'),
 	(8912, 'MathGFX', 'Motore grafico per Dip. di Matematica basato su OpenGL', '2020-05-20'),
-	(9302, 'EZ Contability', 'Software di contabilita'' per azienda privata', '2022-03-17'),
-	(6923, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', '2021-01-06'),
-	(4942, 'KLogs', 'Software di logging interno', '2020-04-27'),
-	(9455, 'Bowling Manager', 'Software di amministrazione sale da Bowling', '2021-06-02'),
-	(7738, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', '2020-08-18');
+	(9302, 'EZ Contability', 'Software di contabilita'' per azienda privata', NULL),
+	(6923, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', NULL),
+	(4942, 'KLogs', 'Software di logging interno', NULL),
+	(9455, 'Bowling Manager', 'Software di amministrazione sale da Bowling', NULL),
+	(7738, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', NULL);
