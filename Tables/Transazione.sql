@@ -26,20 +26,20 @@ VALUES
     (389, 'Uscita', -100, 'Macchina del caffè per amministratore piano 2', '2021-7-29'),
 
     --Entrate per la sede 389
-    (389, 'Entrata'),
-    (389, 'Entrata'),
-    (389, 'Entrata'),
-    (389, 'Entrata'),
-    (389, 'Entrata'),
-    (389, 'Entrata'),
+    (389, 'Entrata', 10000, 'Vendita licenza', '2022-1-31'),
+    (389, 'Entrata', 3020, 'Vendita piccolo software', '2020-9-29'),
+    (389, 'Entrata', 2550, 'Vendita piccolo software', '2019-5-11'),
+    (389, 'Entrata', 6700, 'Vendita licenza', '2021-7-15'),
+    (389, 'Entrata', 9800, 'Vendita licenza', '2022-3-10'),
+    (389, 'Entrata', 29422, 'Vendita licenza', '2022-4-5'),
 
     --Fatture per la sede 389
-    (389, 'Fattura'),
-    (389, 'Fattura'),
-    (389, 'Fattura'),
-    (389, 'Fattura'),
-    (389, 'Fattura'),
-    (389, 'Fattura'),
+    (389, 'Fattura', 350, 'Fattura per consulenza', '2022-5-14'),
+    (389, 'Fattura', 1000, 'Fattura per consulenza', '2022-2-19'),
+    (389, 'Fattura', 920, 'Fattura per consulenza', '2022-3-27'),
+    (389, 'Fattura', 4500, 'Fattura vendita', '2022-4-23'),
+    (389, 'Fattura', 1200, 'Fattura computer assemblato', ''),
+    (389, 'Fattura', 300, 'Fattura per consulenza'),
 
     --Stipendi per la sede 389
     (389, 'Stipendio'),
