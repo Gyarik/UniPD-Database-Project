@@ -6,7 +6,7 @@ CREATE TYPE sviluppo AS ENUM ('Manager Progetto', 'Sviluppatore', 'Tester', 'Ana
 CREATE TABLE Team_Sviluppo (
 	id_dip INT NOT NULL,
     id_sede INT NOT NULL,
-	tipologia sviluppo,
+	tipologia sviluppo NOT NULL,
 	PRIMARY KEY (id_dip, id_sede),
 	FOREIGN KEY (id_dip, id_sede) REFERENCES Dipendente(id_dip, id_sede) ON UPDATE CASCADE ON DELETE CASCADE
 );
