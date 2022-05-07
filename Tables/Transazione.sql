@@ -4,7 +4,7 @@ DROP TYPE IF EXISTS transazione;
 CREATE TYPE transazione AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
 
 CREATE TABLE Transazione (
-    id_trz INT NOT NULL,
+    id_trz SERIAL NOT NULL,
     id_sede INT NOT NULL,
     tipologia transazione NOT NULL,
     saldo DECIMAL (7,2) NOT NULL CHECK (saldo <> 0),
@@ -15,100 +15,168 @@ CREATE TABLE Transazione (
     CHECK (((tipologia = 'Uscita' OR tipologia = 'Stipendio') AND saldo < 0) or ((tipologia = 'Entrata' OR tipologia = 'Fattura') and saldo > 0))
 );
 
-INSERT INTO Transazione (id_trz, id_sede, tipologia, saldo, data_trz)
+INSERT INTO Transazione (id_sede, tipologia, saldo, descrizione, data_trz)
 VALUES
-    (1, 389, 'Uscita', -2550, '2020-12-1'),
-    (2, 389, 'Entrata', 2200, '2020-12-1'),
-    (3, 389, 'Fattura', 4200, ''),
-    (4, 389, 'Stipendio', -3520, ),
-    (5, 389, 'Uscita', -4370, ),
-    (6, 389, 'Entrata', 3758),
-    (7, 389, 'Fattura', 4550),
-    (8, 389, 'Stipendio', -1500),
-    (9, 389, 'Uscita', -12300),
-    (10, 389, 'Entrata', 20000),
-    (11, 389, 'Fattura'),
-    (12, 389, 'Stipendio'),
-    (, 389, 'Uscita', -2550, ),
-    (, 389, 'Entrata', 2200, ),
-    (, 389, 'Fattura', 4200),
-    (, 389, 'Stipendio', -3520, ),
-    (, 389, 'Uscita', , ),
-    (, 389, 'Entrata', , ),
-    (, 389, 'Fattura', ),
-    (, 389, 'Stipendio',, ),
-    (, 389, 'Uscita', , ),
-    (, 389, 'Entrata', , ),
-    (, 389, 'Fattura', ),
-    (, 389, 'Stipendio',, ),
-    (, 389, 'Uscita', , ),
-    (, 389, 'Entrata', , ),
-    (, 389, 'Fattura', ),
-    (, 389, 'Stipendio',, ),
+    --Uscite per la sede 389
+    (389, 'Uscita', -1230, 'Manutenzione impianto elettrico reparto amministrazione', '2020-12-1' ),
+    (389, 'Uscita', -3234, 'Acquisto due computer per sviluppatori', '2021-4-17' ),
+    (389, 'Uscita', -240, 'Rifornimento merende secondo piano', '2022-3-14'),
+    (389, 'Uscita', -1221, 'Computer portatile per sviluppatore', '2022-3-14'),
+    (389, 'Uscita', -23000, 'Ristrutturazione pavimento piano terzo', '2017-9-21'),
+    (389, 'Uscita', -100, 'Macchina del caffè per amministratore piano 2', '2021-7-29'),
 
+    --Entrate per la sede 389
+    (389, 'Entrata'),
+    (389, 'Entrata'),
+    (389, 'Entrata'),
+    (389, 'Entrata'),
+    (389, 'Entrata'),
+    (389, 'Entrata'),
 
+    --Fatture per la sede 389
+    (389, 'Fattura'),
+    (389, 'Fattura'),
+    (389, 'Fattura'),
+    (389, 'Fattura'),
+    (389, 'Fattura'),
+    (389, 'Fattura'),
 
-    (, 437, 'Uscita'),
-    (, 437, 'Entrata'),
-    (, 437, 'Fattura'),
-    (, 437, 'Stipendio'),
-    (, 437, 'Stipendio'),
-    (, 437, 'Uscita'),
-    (, 437, 'Entrata'),
-    (, 437, 'Fattura'),
-    (, 437, 'Stipendio'),
-    (, 437, 'Stipendio'),
-    (, 437, 'Uscita'),
-    (, 437, 'Entrata'),
-    (, 437, 'Fattura'),
-    (, 437, 'Stipendio'),
-    (, 437, 'Stipendio'),
+    --Stipendi per la sede 389
+    (389, 'Stipendio'),
+    (389, 'Stipendio'),
+    (389, 'Stipendio'),
+    (389, 'Stipendio'),
+    (389, 'Stipendio'),
+    (389, 'Stipendio'),
 
-    (, 594, 'Uscita'),
-    (, 594, 'Entrata'),
-    (, 594, 'Fattura'),
-    (, 594, 'Stipendio'),
-    (, 594, 'Stipendio'),
-    (, 594, 'Uscita'),
-    (, 594, 'Entrata'),
-    (, 594, 'Fattura'),
-    (, 594, 'Stipendio'),
-    (, 594, 'Stipendio'),
-    (, 594, 'Uscita'),
-    (, 594, 'Entrata'),
-    (, 594, 'Fattura'),
-    (, 594, 'Stipendio'),
-    (, 594, 'Stipendio'),
+    --Uscite per la sede 437
+    (437, 'Uscita'),
+    (437, 'Uscita'),
+    (437, 'Uscita'),
+    (437, 'Uscita'),
+    (437, 'Uscita'),
+    (437, 'Uscita'),
 
-    (, 239, 'Uscita'),
-    (, 239, 'Entrata'),
-    (, 239, 'Fattura'),
-    (, 239, 'Stipendio'),
-    (, 239, 'Stipendio'),
-    (, 239, 'Uscita'),
-    (, 239, 'Entrata'),
-    (, 239, 'Fattura'),
-    (, 239, 'Stipendio'),
-    (, 239, 'Stipendio'),
-    (, 239, 'Uscita'),
-    (, 239, 'Entrata'),
-    (, 239, 'Fattura'),
-    (, 239, 'Stipendio'),
-    (, 239, 'Stipendio'),
+    --Entrate per la sede 437
+    (437, 'Entrata'),
+    (437, 'Entrata'),
+    (437, 'Entrata'),
+    (437, 'Entrata'),
+    (437, 'Entrata'),
+    (437, 'Entrata'),
 
-    (, 312, 'Uscita'),
-    (, 312, 'Entrata'),
-    (, 312, 'Fattura'),
-    (, 312, 'Stipendio'),
-    (, 312, 'Stipendio')
-    (, 312, 'Uscita'),
-    (, 312, 'Entrata'),
-    (, 312, 'Fattura'),
-    (, 312, 'Stipendio'),
-    (, 312, 'Stipendio'),
-    (, 312, 'Uscita'),
-    (, 312, 'Entrata'),
-    (, 312, 'Fattura'),
-    (, 312, 'Stipendio'),
-    (, 312, 'Stipendio'),
+    --Fatture per la sede 437
+    (437, 'Fattura'),
+    (437, 'Fattura'),
+    (437, 'Fattura'),
+    (437, 'Fattura'),
+    (437, 'Fattura'),
+    (437, 'Fattura'),
+
+    --Stipendi per la sede 437
+    (437, 'Stipendio'),
+    (437, 'Stipendio'),
+    (437, 'Stipendio'),
+    (437, 'Stipendio'),
+    (437, 'Stipendio'),
+    (437, 'Stipendio'),
+
+    --Uscite per la sede 594
+    (594, 'Uscita'),
+    (594, 'Uscita'),
+    (594, 'Uscita'),
+    (594, 'Uscita'),
+    (594, 'Uscita'),
+    (594, 'Uscita'),
+
+    --Entrate per la sede 594
+    (594, 'Entrata'),
+    (594, 'Entrata'),
+    (594, 'Entrata'),
+    (594, 'Entrata'),
+    (594, 'Entrata'),
+    (594, 'Entrata'),
+
+    --Fatture per la sede 594
+    (594, 'Fattura'),
+    (594, 'Fattura'),
+    (594, 'Fattura'),
+    (594, 'Fattura'),
+    (594, 'Fattura'),
+    (594, 'Fattura'),
+
+    --Stipendi per la sede 594
+    (594, 'Stipendio'),
+    (594, 'Stipendio'),
+    (594, 'Stipendio'),
+    (594, 'Stipendio'),
+    (594, 'Stipendio'),
+    (594, 'Stipendio'),
+
+    --Uscite per la sede 239
+    (239, 'Uscita'),
+    (239, 'Uscita'),
+    (239, 'Uscita'),
+    (239, 'Uscita'),
+    (239, 'Uscita'),
+    (239, 'Uscita'), 
+
+    --Entrate per la sede 239
+    (239, 'Entrata'),
+    (239, 'Entrata'),
+    (239, 'Entrata'),
+    (239, 'Entrata'),
+    (239, 'Entrata'),
+    (239, 'Entrata'),
+
+    --Fatture per la sede 239
+    (239, 'Fattura'),
+    (239, 'Fattura'),
+    (239, 'Fattura'),
+    (239, 'Fattura'),
+    (239, 'Fattura'),
+    (239, 'Fattura'),
+
+    --Stipendi per la sede 239
+    (239, 'Stipendio'),
+    (239, 'Stipendio'),
+    (239, 'Stipendio'),
+    (239, 'Stipendio'),
+    (239, 'Stipendio'),
+    (239, 'Stipendio'),
+
+    --Uscite per la sede 312
+    (312, 'Uscita'),
+    (312, 'Uscita'),
+    (312, 'Uscita'),
+    (312, 'Uscita'),
+    (312, 'Uscita'),
+    (312, 'Uscita'),
+
+    --Entrate per la sede 312
+    (312, 'Entrata'),
+    (312, 'Entrata'),
+    (312, 'Entrata'),
+    (312, 'Entrata'),
+    (312, 'Entrata'),
+    (312, 'Entrata'),
+
+    --Fatture per la sede 312
+    (312, 'Fattura'),
+    (312, 'Fattura'),
+    (312, 'Fattura'),
+    (312, 'Fattura'),
+    (312, 'Fattura'),
+    (312, 'Fattura'),
+
+    --Stipendi per la sede 312
+    (312, 'Stipendio'),
+    (312, 'Stipendio'),
+    (312, 'Stipendio'),
+    (312, 'Stipendio'),
+    (312, 'Stipendio'),
+    (312, 'Stipendio');
     
+
+
+
