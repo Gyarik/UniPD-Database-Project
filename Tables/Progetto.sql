@@ -4,7 +4,7 @@ CREATE TABLE Progetto (
 	id_prog INT NOT NULL,
 	nome_prog VARCHAR(20) NOT NULL,
 	descrizione VARCHAR(100),
-	data_inizio DATE NOT NULL,
+	data_inizio DATE,
 	PRIMARY KEY (id_prog)
 );
 
