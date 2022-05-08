@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Dipendente;
+DROP TABLE IF EXISTS Dipendente CASCADE;
 DROP TYPE IF EXISTS tipo_dip;
 
 CREATE TYPE tipo_dip AS ENUM ('Direttore', 'Manager Generale', 'Manager Progetto', 'Sviluppatore', 'Tester', 'Addetto Marketing');
