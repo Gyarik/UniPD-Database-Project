@@ -46,4 +46,7 @@ VALUES
     (347, 437, 'Massimiliano', 'Sangues', 'Addetto Marketing', '1998-3-7'),
     (789, 594, 'Edmonda', 'Mughini', 'Tester', '1995-6-23'),
     (989, 239, 'Alessio', 'Rigli', 'Manager Generale', '1998-12-24'),
-    (979, 312, 'Rosamunda', 'Chizzotti', 'Manager Progetto', '1988-4-9');
+    (979, 312, 'Rosamunda', 'Chizzotti', 'Manager Progetto', '1988-4-9'),
+    (595, 389, 'Diogene', 'Schiapelli', 'Tester', '1995-4-2'),
+    (238, 437, 'Gaudenzia', 'Stramucci', 'Addetto Marketing', '1984-3-6'),
+    (611, 594, 'Gianfranca', 'Orezzoli', 'Sviluppatore', '1994-6-6');

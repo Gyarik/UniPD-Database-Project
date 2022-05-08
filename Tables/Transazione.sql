@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS Transazione;
 DROP TYPE IF EXISTS transazione;
 
-CREATE TYPE transazione AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
+CREATE TYPE tipo AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
 
 CREATE TABLE Transazione (
     id_trz INT NOT NULL,
     id_sede INT NOT NULL,
-    tipologia transazione NOT NULL,
-    saldo DECIMAL (7,2) NOT NULL CHECK (saldo <> 0),
+    tipologia tipo NOT NULL,
+    saldo INT NOT NULL CHECK (saldo <> 0),
     descrizione VARCHAR (300),
     data_trz DATE NOT NULL,
     PRIMARY KEY (id_trz, id_sede),
@@ -15,7 +15,7 @@ CREATE TABLE Transazione (
     CHECK (((tipologia = 'Uscita' OR tipologia = 'Stipendio') AND saldo < 0) or ((tipologia = 'Entrata' OR tipologia = 'Fattura') and saldo > 0))
 );
 
-INSERT INTO Transazione (id_sede, tipologia, saldo, descrizione, data_trz)
+INSERT INTO Transazione (id_trz, id_sede, tipologia, saldo, descrizione, data_trz)
 VALUES
     --Uscite per la sede 389
     (1, 389, 'Uscita', -1230, 'Manutenzione impianto elettrico reparto amministrazione', '2020-12-1' ),
@@ -66,12 +66,12 @@ VALUES
     (36, 437, 'Entrata', 1000000, 'Vendita licenza', '2022-1-1'),
 
     --Fatture per la sede 437
-    (37, 437, 'Fattura', 400, 'Fattura per consulenza'),
-    (38, 437, 'Fattura', 350, 'Fattura per consulenza'),
-    (39, 437, 'Fattura', 2300, 'Fattura per computer assemblato'),
-    (40, 437, 'Fattura', 1000, 'Fattura per consulenza'),
-    (41, 437, 'Fattura', 1500, 'Fattura per computer assemblato'),
-    (42, 437, 'Fattura', 150, 'Fattura per consulenza'),
+    (37, 437, 'Fattura', 400, 'Fattura per consulenza', '2020-05-14'),
+    (38, 437, 'Fattura', 350, 'Fattura per consulenza',  '2020-12-13'),
+    (39, 437, 'Fattura', 2300, 'Fattura per computer assemblato', '2021-10-13'),
+    (40, 437, 'Fattura', 1000, 'Fattura per consulenza', '2021-12-04'),
+    (41, 437, 'Fattura', 1500, 'Fattura per computer assemblato', '2022-08-20'),
+    (42, 437, 'Fattura', 150, 'Fattura per consulenza', '2020-07-22'),
 
     --Stipendi per la sede 437
     (43, 437, 'Stipendio', -2000, 'Retribuzione dipendente', '2022-2-4'),
@@ -82,100 +82,100 @@ VALUES
     (48, 437, 'Stipendio', -3500, 'Retribuzione dipendente', '2022-3-24'),
 
     --Uscite per la sede 594
-    (594, 'Uscita', -1300, 'Nuove console da testing videogiochi'),
-    (594, 'Uscita', -2500, 'Nuovo pc '),
-    (594, 'Uscita', -3000,),
-    (594, 'Uscita', -6000,),
-    (594, 'Uscita', -1200, 'Nuove console da testing videogiochi'),
-    (594, 'Uscita', -3000,),
+    (49, 594, 'Uscita', -1300, 'Nuove console da testing videogiochi', '2021-5-23'),
+    (50, 594, 'Uscita', -2500, 'Nuovo pc', '2022-3-19'),
+    (51, 594, 'Uscita', -3000, 'Nuovo pc per test gaming', '2021-12-29'),
+    (52, 594, 'Uscita', -6000, 'Nuove postazioni per riparazione computer e telefoni', '2022-5-14'),
+    (53, 594, 'Uscita', -1200, 'Nuove console da testing videogiochi', '2021-8-27'),
+    (54, 594, 'Uscita', -3000, 'Componentistica varia', '2021-10-11'),
 
     --Entrate per la sede 594
-    (594, 'Entrata'),
-    (594, 'Entrata'),
-    (594, 'Entrata'),
-    (594, 'Entrata'),
-    (594, 'Entrata'),
-    (594, 'Entrata'),
+    (55, 594, 'Entrata', 19755, 'Vendita licenza', '2020-07-18'),
+    (56, 594, 'Entrata', 1000, 'Vendita piccolo software', '2021-04-05'),
+    (57, 594, 'Entrata', 750, 'Consulenza a cliente', '2021-07-05'),
+    (58, 594, 'Entrata', 13937, 'Vendita licenza', '2021-07-30'),
+    (59, 594, 'Entrata', 2000, 'Vendita piccolo software', '2022-05-05'),
+    (60, 594, 'Entrata', 3450, 'Vendita computer da gaming', '2022-11-17'),
 
     --Fatture per la sede 594
-    (594, 'Fattura'),
-    (594, 'Fattura'),
-    (594, 'Fattura'),
-    (594, 'Fattura'),
-    (594, 'Fattura'),
-    (594, 'Fattura'),
+    (61, 594, 'Fattura', 1300, 'Fattura per computer da gaming', '2020-04-17'),
+    (62, 594, 'Fattura', 500, 'Fattura per consulenza', '2020-07-24'),
+    (63, 594, 'Fattura', 350, 'Fattura per consulenza', '2021-01-01'),
+    (64, 594, 'Fattura', 1200, 'Fattura per computer da gaming', '2021-01-25'),
+    (65, 594, 'Fattura', 1500, 'Fattura per computer da gaming', '2021-03-04'),
+    (66, 594, 'Fattura', 400, 'Fattura per consulenza', '2021-04-01'),
 
     --Stipendi per la sede 594
-    (594, 'Stipendio'),
-    (594, 'Stipendio'),
-    (594, 'Stipendio'),
-    (594, 'Stipendio'),
-    (594, 'Stipendio'),
-    (594, 'Stipendio'),
+    (67, 594, 'Stipendio', -1250, 'Retribuzione dipendente', '2022-01-23'),
+    (68, 594, 'Stipendio', -1349, 'Retribuzione dipendente', '2022-02-04'),
+    (69, 594, 'Stipendio', -2500, 'Retribuzione dipendente', '2022-03-03'),
+    (70, 594, 'Stipendio', -3437, 'Retribuzione dipendente', '2022-03-19'),
+    (71, 594, 'Stipendio', -2145, 'Retribuzione dipendente', '2022-03-21'),
+    (72, 594, 'Stipendio', -1789, 'Retribuzione dipendente', '2022-03-25'),
 
     --Uscite per la sede 239
-    (239, 'Uscita'),
-    (239, 'Uscita'),
-    (239, 'Uscita'),
-    (239, 'Uscita'),
-    (239, 'Uscita'),
-    (239, 'Uscita'), 
+    (73, 239, 'Uscita', -1350, 'Nuovo pc', '2020-05-31'),
+    (74, 239, 'Uscita', -20000, 'Ampliamento sede piano 4', '2020-07-03'),
+    (75, 239, 'Uscita', -6000, 'Nuove postazioni', '2020-12-18'),
+    (76, 239, 'Uscita', -850, 'Componentistica', '2021-02-11'),
+    (77, 239, 'Uscita', -700, 'Componentistica', '2021-03-29'),
+    (78, 239, 'Uscita', -600, 'Spese avvocato', '2021-05-20'), 
 
     --Entrate per la sede 239
-    (239, 'Entrata'),
-    (239, 'Entrata'),
-    (239, 'Entrata'),
-    (239, 'Entrata'),
-    (239, 'Entrata'),
-    (239, 'Entrata'),
+    (79, 239, 'Entrata', 50000, 'Vendita licenza', '2020-08-03'),
+    (80, 239, 'Entrata', 3500, 'Vendita pc', '2020-08-23'),
+    (81, 239, 'Entrata', 2343, 'Vendita piccolo software', '2021-12-29'),
+    (82, 239, 'Entrata', 600, 'Consulenza', '2022-04-16'),
+    (83, 239, 'Entrata', 9800, 'Vendita piccola licenza', '2022-05-01'),
+    (84, 239, 'Entrata', 12200, 'Vendita licenza', '2022-05-07'),
 
     --Fatture per la sede 239
-    (239, 'Fattura'),
-    (239, 'Fattura'),
-    (239, 'Fattura'),
-    (239, 'Fattura'),
-    (239, 'Fattura'),
-    (239, 'Fattura'),
+    (85, 239, 'Fattura', 400, 'Fattura per consulenza', '2020-10-28'),
+    (86, 239, 'Fattura', 1290, 'Fattura per pc', '2021-04-06'),
+    (87, 239, 'Fattura', 120, 'Fattura per piccola consulenza', '2021-06-07'),
+    (88, 239, 'Fattura', 900, 'Fattura per consulenza', '2021-06-18'),
+    (89, 239, 'Fattura', 750, 'Fattura per consulenza', '2021-07-07'),
+    (90, 239, 'Fattura', 100, 'Fattura per consulenza', '2021-11-11'),
 
     --Stipendi per la sede 239
-    (239, 'Stipendio'),
-    (239, 'Stipendio'),
-    (239, 'Stipendio'),
-    (239, 'Stipendio'),
-    (239, 'Stipendio'),
-    (239, 'Stipendio'),
+    (91, 239, 'Stipendio', -1256, 'Retribuzione dipendente', '2022-01-16'),
+    (92, 239, 'Stipendio', -2300, 'Retribuzione dipendente', '2022-02-27'),
+    (93, 239, 'Stipendio', -1800, 'Retribuzione dipendente', '2022-03-07'),
+    (94, 239, 'Stipendio', -1450, 'Retribuzione dipendente', '2022-03-26'),
+    (95, 239, 'Stipendio', -1275, 'Retribuzione dipendente', '2022-04-03'),
+    (96, 239, 'Stipendio', -1900, 'Retribuzione dipendente', '2022-04-27'),
 
     --Uscite per la sede 312
-    (312, 'Uscita'),
-    (312, 'Uscita'),
-    (312, 'Uscita'),
-    (312, 'Uscita'),
-    (312, 'Uscita'),
-    (312, 'Uscita'),
+    (97, 312, 'Uscita', -30000, 'Acquisizione di licenza', '2020-02-22'),
+    (98, 312, 'Uscita', -405, 'Spese componentistica', '2020-05-14'),
+    (99, 312, 'Uscita', -2100, 'Nuovo computer', '2020-06-25'),
+    (100, 312, 'Uscita', -300, 'Componentistica', '2021-06-17'),
+    (101, 312, 'Uscita', -450, 'Attrezzatura', '2021-08-13'),
+    (102, 312, 'Uscita', -1200, 'Promozione pubblicitaria', '2022-03-11'),
 
     --Entrate per la sede 312
-    (312, 'Entrata'),
-    (312, 'Entrata'),
-    (312, 'Entrata'),
-    (312, 'Entrata'),
-    (312, 'Entrata'),
-    (312, 'Entrata'),
+    (103, 312, 'Entrata', 34000, 'Vendita licenza', '2020-06-18'),
+    (104, 312, 'Entrata', 1000, 'Vendita piccolo software', '2020-08-10'),
+    (105, 312, 'Entrata', 200, 'Componentistica', '2020-11-03'),
+    (106, 312, 'Entrata', 1050, 'Componentistica', '2020-11-26'),
+    (107, 312, 'Entrata', 3000, 'Vendita computer', '2021-04-03'),
+    (108, 312, 'Entrata', 450, 'Componentistica', '2021-06-06'),
 
     --Fatture per la sede 312
-    (312, 'Fattura'),
-    (312, 'Fattura'),
-    (312, 'Fattura'),
-    (312, 'Fattura'),
-    (312, 'Fattura'),
-    (312, 'Fattura'),
+    (109, 312, 'Fattura', 280, 'Fattura per consulenza', '2020-02-27'),
+    (110, 312, 'Fattura', 1200, 'Fattura per software', '2020-03-01'),
+    (111, 312, 'Fattura', 560, 'Fattura per consulenza', '2020-06-20'),
+    (112, 312, 'Fattura', 800, 'Fattura per piccolo software', '2020-07-06'),
+    (113, 312, 'Fattura', 700, 'Fattura per piccolo software', '2021-04-01'),
+    (114, 312, 'Fattura', 350, 'Fattura per consulenza', '2021-10-20'),
 
     --Stipendi per la sede 312
-    (312, 'Stipendio'),
-    (312, 'Stipendio'),
-    (312, 'Stipendio'),
-    (312, 'Stipendio'),
-    (312, 'Stipendio'),
-    (312, 'Stipendio');
+    (115, 312, 'Stipendio', -2900, 'Retribuzione dipendente', '2022-01-02'),
+    (116, 312, 'Stipendio', -2000, 'Retribuzione dipendente', '2022-02-18'),
+    (117, 312, 'Stipendio', -1200, 'Retribuzione dipendente', '2022-02-27'),
+    (118, 312, 'Stipendio', -1340, 'Retribuzione dipendente', '2022-03-07'),
+    (119, 312, 'Stipendio', -1670, 'Retribuzione dipendente', '2022-04-03'),
+    (120, 312, 'Stipendio', -1254, 'Retribuzione dipendente', '2022-05-10');
     
 
 
