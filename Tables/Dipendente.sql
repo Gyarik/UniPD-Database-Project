@@ -45,4 +45,5 @@ VALUES
     (787, 389, 'Michele', 'Ballabene', 'Tester', '1998-5-30'),
     (347, 437, 'Massimiliano', 'Sangues', 'Addetto Marketing', '1998-3-7'),
     (789, 594, 'Edmonda', 'Mughini', 'Tester', '1995-6-23'),
-    (989, 239, 'Alessio', 'Rigli', 'Manager Generale', '1998-12-24');
+    (989, 239, 'Alessio', 'Rigli', 'Manager Generale', '1998-12-24'),
+    (979, 312, 'Rosamunda', 'Chizzotti', 'Manager Progetto', '1988-4-9');

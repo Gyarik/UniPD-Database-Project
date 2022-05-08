@@ -8,7 +8,7 @@ CREATE TABLE Contratto (
     data_firma DATE NOT NULL,
     PRIMARY KEY (id_contratto, p_iva, id_dip),
     FOREIGN KEY (p_iva) REFERENCES Cliente (p_iva),
-    FOREIGN KEY (id_dip) REFERENCES Amministrazione (id_dip)
+    FOREIGN KEY (id_dip) REFERENCES Dipendente (id_dip)
 );
 
 INSERT INTO Contratto (id_contratto, p_iva, id_dip, descrizione, data_firma)
