@@ -42,12 +42,12 @@ VALUES
     (18, 389, 'Fattura', 300, 'Fattura per consulenza', '2022-5-12'),
 
     --Stipendi per la sede 389
-    (19, 389, 'Stipendio', 1500, 'Retribuzione dipendente', '2022-1-1'),
-    (20, 389, 'Stipendio', 2000, 'Retribuzione dipendente', '2022-4-1'),
-    (21, 389, 'Stipendio', 1250, 'Retribuzione dipendente', '2022-3-15'),
-    (22, 389, 'Stipendio', 1220, 'Retribuzione dipendente', '2022-2-19'),
-    (23, 389, 'Stipendio', 2500, 'Retribuzione dipendente', '2022-3-11'),
-    (24, 389, 'Stipendio', 3500, 'Retribuzione dipendente', '2022-2-2'),
+    (19, 389, 'Stipendio', -1500, 'Retribuzione dipendente', '2022-1-1'),
+    (20, 389, 'Stipendio', -2000, 'Retribuzione dipendente', '2022-4-1'),
+    (21, 389, 'Stipendio', -1250, 'Retribuzione dipendente', '2022-3-15'),
+    (22, 389, 'Stipendio', -1220, 'Retribuzione dipendente', '2022-2-19'),
+    (23, 389, 'Stipendio', -2500, 'Retribuzione dipendente', '2022-3-11'),
+    (24, 389, 'Stipendio', -3500, 'Retribuzione dipendente', '2022-2-2'),
 
     --Uscite per la sede 437
     (25, 437, 'Uscita', -300, 'Nuovo climatizzatore ufficio incontri', '2021-10-9'),
@@ -74,20 +74,20 @@ VALUES
     (42, 437, 'Fattura', 150, 'Fattura per consulenza'),
 
     --Stipendi per la sede 437
-    (43, 437, 'Stipendio'),
-    (44, 437, 'Stipendio'),
-    (45, 437, 'Stipendio'),
-    (46, 437, 'Stipendio'),
-    (47, 437, 'Stipendio'),
-    (48, 437, 'Stipendio'),
+    (43, 437, 'Stipendio', -2000, 'Retribuzione dipendente', '2022-2-4'),
+    (44, 437, 'Stipendio', -1750, 'Retribuzione dipendente', '2022-5-5'),
+    (45, 437, 'Stipendio', -1300, 'Retribuzione dipendente', '2022-2-21'),
+    (46, 437, 'Stipendio', -1200, 'Retribuzione dipendente', '2022-5-8'),
+    (47, 437, 'Stipendio', -1350, 'Retribuzione dipendente', '2022-5-13'),
+    (48, 437, 'Stipendio', -3500, 'Retribuzione dipendente', '2022-3-24'),
 
     --Uscite per la sede 594
-    (594, 'Uscita'),
-    (594, 'Uscita'),
-    (594, 'Uscita'),
-    (594, 'Uscita'),
-    (594, 'Uscita'),
-    (594, 'Uscita'),
+    (594, 'Uscita', -1300, 'Nuove console da testing videogiochi'),
+    (594, 'Uscita', -2500, 'Nuovo pc '),
+    (594, 'Uscita', -3000,),
+    (594, 'Uscita', -6000,),
+    (594, 'Uscita', -1200, 'Nuove console da testing videogiochi'),
+    (594, 'Uscita', -3000,),
 
     --Entrate per la sede 594
     (594, 'Entrata'),
