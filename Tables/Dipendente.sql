@@ -14,7 +14,7 @@ CREATE TABLE Dipendente (
     FOREIGN KEY (id_sede) REFERENCES Sede(id_sede) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO Dipendente(id_dip, id_sede, nome, cognome, data_nascita)
+INSERT INTO Dipendente(id_dip, id_sede, nome, cognome, tipologia, data_nascita)
 VALUES
     (212, 389, 'Ivan', 'Ocardi', 'Sviluppatore', '1990-4-16'),
     (423, 437, 'Leonardo', 'Gallenzi', 'Manager Generale', '1974-8-20'),
@@ -25,13 +25,13 @@ VALUES
     (777, 437, 'Maurizio', 'Przypalinski', 'Addetto Marketing',  '1987-2-28'),
     (723, 594, 'Guerino', 'Bonna', 'Sviluppatore',  '1991-1-25'),
     (609, 239, 'Selene', 'Saragni', 'Direttore', '1998-11-11'),
-    (420, 312, 'Rosalia', 'Carogioiello', 'Addetto MArketing', '2001-12-3'),
+    (420, 312, 'Rosalia', 'Carogioiello', 'Addetto Marketing', '2001-12-3'),
     (690, 389, 'Tobia', 'Galizi', 'Tester', '1992-8-7'),
     (111, 437, 'Candido', 'Berod', 'Tester', '2002-4-14'),
     (309, 594, 'Remigio', 'Cicuzza', 'Direttore', '1977-11-22'),
     (543, 239, 'Telemaco', 'Formenti', 'Manager Progetto', '1986-3-24'),
     (890, 312, 'Geronimo', 'Scicchitano', 'Direttore', '1992-7-19'),
-    (333, 389, 'Adriano', 'Polledrotti', '1989-5-23'),
+    (333, 389, 'Adriano', 'Polledrotti', 'Tester', '1989-5-23'),
     (677, 437, 'Stella', 'Giangiuli', 'Manager Progetto', '2004-3-23'),
     (334, 594, 'Ilario', 'Angrisano', 'Manager Progetto', '1978-9-3'),
     (124, 239, 'Iole', 'Navazzotti', 'Manager Progetto', '1991-9-8'),
