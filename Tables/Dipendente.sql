@@ -10,6 +10,7 @@ CREATE TABLE Dipendente (
     cognome VARCHAR (20) NOT NULL,
     tipologia tipo_dip NOT NULL,
     data_nascita DATE NOT NULL,
+	UNIQUE (id_dip),
     PRIMARY KEY (id_dip, id_sede),
     FOREIGN KEY (id_sede) REFERENCES Sede(id_sede) ON UPDATE CASCADE ON DELETE CASCADE
 );
