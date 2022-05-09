@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS Transazione;
-DROP TYPE IF EXISTS transazione;
+DROP TYPE IF EXISTS tipo;
 
 CREATE TYPE tipo AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
 
@@ -10,6 +10,7 @@ CREATE TABLE Transazione (
     saldo INT NOT NULL CHECK (saldo <> 0),
     descrizione VARCHAR (300),
     data_trz DATE NOT NULL,
+	UNIQUE (id_trz),
     PRIMARY KEY (id_trz, id_sede),
     FOREIGN KEY (id_sede) REFERENCES Sede(id_sede) ON UPDATE CASCADE ON DELETE CASCADE,
     CHECK (((tipologia = 'Uscita' OR tipologia = 'Stipendio') AND saldo < 0) or ((tipologia = 'Entrata' OR tipologia = 'Fattura') and saldo > 0))
