@@ -172,7 +172,7 @@ VALUES
     --Stipendi per la sede 312
     (115, 312, 'Stipendio', -2900, 'Retribuzione dipendente', '2022-01-02'),
     (116, 312, 'Stipendio', -2000, 'Retribuzione dipendente', '2022-02-18'),
-    (117, 312, 'Stipendio', -1200, 'Retribuzione dipendente', '2022-02-27'),
+    (117, 312, 'Stipendio', -3500, 'Retribuzione dipendente', '2022-02-27'),
     (118, 312, 'Stipendio', -1340, 'Retribuzione dipendente', '2022-03-07'),
     (119, 312, 'Stipendio', -1670, 'Retribuzione dipendente', '2022-04-03'),
     (120, 312, 'Stipendio', -1254, 'Retribuzione dipendente', '2022-05-10');
