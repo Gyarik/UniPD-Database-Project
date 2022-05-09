@@ -1,8 +1,9 @@
-DROP TABLE IF EXISTS Modulo;
+DROP TABLE IF EXISTS Modulo CASCADE;
 
 CREATE TABLE Modulo (
 	id_modulo INT NOT NULL,
 	id_prog INT NOT NULL,
+	UNIQUE (id_modulo),
 	PRIMARY KEY (id_modulo, id_prog),
 	FOREIGN KEY (id_prog) REFERENCES Progetto(id_prog) ON UPDATE CASCADE ON DELETE CASCADE
 );
