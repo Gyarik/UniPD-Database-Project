@@ -6,5 +6,6 @@ CREATE TABLE Test (
 	id_modulo INT NOT NULL,
 	UNIQUE (id_test),
 	PRIMARY KEY (id_test, id_modulo),
-	FOREIGN KEY (id_modulo) REFERENCES Modulo(id_modulo)
+	FOREIGN KEY (id_modulo) REFERENCES Modulo(id_modulo),
+	FOREIGN KEY (id_dip) REFERENCES Dipendente(id_dip)
 );
