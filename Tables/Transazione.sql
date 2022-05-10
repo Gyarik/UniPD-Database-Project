@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Transazione;
+DROP TABLE IF EXISTS Transazione CASCADE;
 DROP TYPE IF EXISTS tipo;
 
 CREATE TYPE tipo AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
