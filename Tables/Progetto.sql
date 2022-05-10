@@ -6,7 +6,6 @@ CREATE TABLE Progetto (
 	nome_prog VARCHAR(20) NOT NULL,
 	descrizione VARCHAR(100),
 	data_inizio DATE,
-	UNIQUE(id_prog),
 	PRIMARY KEY (id_prog),
 	FOREIGN KEY (id_manager) REFERENCES Dipendente(id_dip)
 );

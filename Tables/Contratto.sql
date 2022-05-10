@@ -6,6 +6,7 @@ CREATE TABLE Contratto (
     id_dip INT NOT NULL,
     descrizione VARCHAR(200),
     data_firma DATE NOT NULL,
+	UNIQUE(id_contratto),
     PRIMARY KEY (id_contratto, p_iva, id_dip),
     FOREIGN KEY (p_iva) REFERENCES Cliente (p_iva),
     FOREIGN KEY (id_dip) REFERENCES Dipendente (id_dip)
