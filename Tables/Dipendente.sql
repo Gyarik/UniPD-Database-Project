@@ -50,4 +50,8 @@ VALUES
     (595, 389, 'Diogene', 'Schiapelli', 'Tester', '1995-4-2'),
     (238, 437, 'Gaudenzia', 'Stramucci', 'Addetto Marketing', '1984-3-6'),
     (611, 594, 'Gianfranca', 'Orezzoli', 'Sviluppatore', '1994-6-6'),
-    (511, 312, 'Gaspare', 'Strazzoso', 'Sviluppatore', '1989-4-17');
+    (511, 312, 'Gaspare', 'Strazzoso', 'Sviluppatore', '1989-4-17'),
+    (281, 389, 'Andriano', 'Pontetti', 'Addetto Marketing', '1981-7-2'),
+    (741, 437, 'Giusta', 'Bauer', 'Addetto Marketing', '1972-9-23'),
+    (689, 594, 'Pippo', 'Colozzo', 'Addetto Marketing', '1992-7-30'),
+    (589, 239, 'Crescenzo', 'Sciannamè', 'Addetto Marketing', '1973-9-24');
