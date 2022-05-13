@@ -54,4 +54,7 @@ VALUES
     (281, 389, 'Andriano', 'Pontetti', 'Addetto Marketing', '1981-7-2'),
     (741, 437, 'Giusta', 'Bauer', 'Addetto Marketing', '1972-9-23'),
     (689, 594, 'Pippo', 'Colozzo', 'Addetto Marketing', '1992-7-30'),
-    (589, 239, 'Crescenzo', 'Sciannamè', 'Addetto Marketing', '1973-9-24');
+    (589, 239, 'Crescenzo', 'Sciannamè', 'Addetto Marketing', '1973-9-24'),
+    (699, 312, 'Melania', 'Pagliarello', 'Manager Generale', '1998-5-30'),
+    (865, 389, 'Eusebia', 'Sammaritano', 'Manager Generale', '1973-10-13'),
+    (698, 437, 'Walter', 'Hdada', 'Manager Generale', '1998-6-30');
