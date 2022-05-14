@@ -5,8 +5,8 @@ using namespace std;
 
 PGconn* tryConn(const char* host, const char* user, const char* db, const char* pass, const char* port);
 void checkResults(PGresult* res, const PGconn* conn);
-void dividePrint(int fields, int* maxLen);
-void queryPrint(PGresult* res);
+void separateLines(int fields, int* maxLen);
+void prettyPrint(PGresult* res);
 
 int main(int argc, char* argv[]) {
     if(argc < 6) {
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
     checkResults(res, conn);
 
     // Print placeholder query
-    queryPrint(res);
+    prettyPrint(res);
 
     PQclear(res);
     PQfinish(conn);
@@ -57,7 +57,7 @@ void checkResults(PGresult* res, const PGconn* conn) {
     }
 }
 
-void dividePrint(int fields, int* maxLen) {
+void separateLines(int fields, int* maxLen) {
     for(int i=0; i<fields; i++) {
         cout << '+';
         for(int j=0; j<maxLen[i]+2; j++)
@@ -66,7 +66,7 @@ void dividePrint(int fields, int* maxLen) {
     cout << '+' << endl;
 }
 
-void queryPrint(PGresult* res) {
+void prettyPrint(PGresult* res) {
     // n. tuple
     int tuples = PQntuples(res);
     // n. campi
@@ -93,7 +93,7 @@ void queryPrint(PGresult* res) {
     }
 
     // Stampa il risultato della query
-    dividePrint(fields, maxLen);
+    separateLines(fields, maxLen);
     for(int i=0; i<fields; i++) {
         cout << "| ";
         cout << query[0][i];
@@ -103,7 +103,7 @@ void queryPrint(PGresult* res) {
             cout << '|';
     }
     cout << endl;
-    dividePrint(fields, maxLen);
+    separateLines(fields, maxLen);
     for(int i=1; i<tuples+1; i++) {
         for(int j=0; j<fields; j++) {
             cout << "| ";
@@ -115,5 +115,5 @@ void queryPrint(PGresult* res) {
         }
         cout << endl;
     }
-    dividePrint(fields, maxLen);
+    separateLines(fields, maxLen);
 }
