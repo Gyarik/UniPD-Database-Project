@@ -4,6 +4,7 @@
 using namespace std;
 
 PGconn* tryConn(const char* host, const char* user, const char* db, const char* pass, const char* port);
+PGresult* paramExec(PGconn* conn, string queries[], int input);
 void checkResults(PGresult* res, const PGconn* conn);
 void separateLines(int fields, int* maxLen);
 void prettyPrint(PGresult* res);
@@ -15,17 +16,53 @@ int main(int argc, char* argv[]) {
     }
 
     PGconn* conn = tryConn(argv[1], argv[2], argv[3], argv[4], argv[5]);
+    PGresult* res = nullptr;
+    int input;
+    string parametro;
+    const char* param = nullptr;
 
-    // TODO: Placeholder code, will be replaced
-    cout << "Query di esempio" << endl;
+    string queries[2] = {
 
-    PGresult* res = PQexec(conn, "SELECT * FROM progetto");
-    checkResults(res, conn);
+        "SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia \
+         FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip \
+		 JOIN sede ON dipendente.id_sede = sede.id_sede \
+         WHERE provincia = $1::varchar \
+         GROUP BY dipendente.id_dip, cognome, nome, citta, provincia \
+         ORDER BY moduli DESC",
 
-    // Print placeholder query
-    prettyPrint(res);
+        "SELECT * FROM progetto"
+    };
 
-    PQclear(res);
+    do {
+        cout << "[1] Conta i moduli assegnati a tutti i dipendenti di una provincia" << endl;
+        cout << "[2] Test" << endl;
+        cout << "[6] Esci" << endl;
+        cout << "Seleziona l'opzione: ";
+        cin >> input;
+
+        switch(input) {
+            case 1:
+                cout << "Parametro = Provincia" << endl;
+                res = paramExec(conn, queries, input);
+                checkResults(res, conn);
+                prettyPrint(res);
+                PQclear(res);
+                break;
+            case 2:
+                res = PQexec(conn, queries[input-1].c_str());
+                checkResults(res, conn);
+                prettyPrint(res);
+                PQclear(res);
+                break;
+            case 6:
+                break;
+            default:
+                cout << "Errore di input!" << endl;
+                break;
+        }
+
+    } while(input != 6);
+
     PQfinish(conn);
 
     return 0;
@@ -47,6 +84,15 @@ PGconn* tryConn(const char* host, const char* user, const char* db, const char* 
     cout << "Connessione avvenuta con successo" << endl;
 
     return conn;
+}
+
+PGresult* paramExec(PGconn* conn, string queries[], int input) {
+    PGresult* stmt = PQprepare(conn, "queryParam", queries[input-1].c_str(), 1, NULL);
+    string parametro;
+    cout << "Inserire il parametro: ";
+    cin >> parametro;
+    const char* param = parametro.c_str();
+    return PQexecPrepared(conn, "queryParam", 1, &param, NULL, 0, 0);
 }
 
 void checkResults(PGresult* res, const PGconn* conn) {
