@@ -6,17 +6,17 @@ CREATE TYPE tipo AS ENUM ('Uscita', 'Entrata', 'Fattura', 'Stipendio');
 CREATE TABLE Transazione (
     id_trz INT NOT NULL,
     id_sede INT NOT NULL,
-    tipologia tipo NOT NULL,
+    tipo_trz tipo NOT NULL,
     saldo INT NOT NULL CHECK (saldo <> 0),
     descrizione VARCHAR (300),
     data_trz DATE NOT NULL,
 	UNIQUE (id_trz),
     PRIMARY KEY (id_trz, id_sede),
     FOREIGN KEY (id_sede) REFERENCES Sede(id_sede) ON UPDATE CASCADE ON DELETE CASCADE,
-    CHECK (((tipologia = 'Uscita' OR tipologia = 'Stipendio') AND saldo < 0) or ((tipologia = 'Entrata' OR tipologia = 'Fattura') and saldo > 0))
+    CHECK (((tipo_trz = 'Uscita' OR tipo_trz = 'Stipendio') AND saldo < 0) or ((tipo_trz = 'Entrata' OR tipo_trz = 'Fattura') and saldo > 0))
 );
 
-INSERT INTO Transazione (id_trz, id_sede, tipologia, saldo, descrizione, data_trz)
+INSERT INTO Transazione (id_trz, id_sede, tipo_trz, saldo, descrizione, data_trz)
 VALUES
     --Uscite per la sede 389
     (1, 389, 'Uscita', -1230, 'Manutenzione impianto elettrico reparto amministrazione', '2020-12-1' ),
