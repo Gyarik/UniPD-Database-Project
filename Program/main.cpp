@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     string parametro;
     const char* param = nullptr;
 
-    string queries[2] = {
+    string queries[3] = {
 
         "SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia \
          FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip \
@@ -30,12 +30,19 @@ int main(int argc, char* argv[]) {
          GROUP BY dipendente.id_dip, cognome, nome, citta, provincia \
          ORDER BY moduli DESC",
 
+        "SELECT COUNT (*) as Contratti, S.id_sede, C.data_firma \
+         FROM Contratto as C JOIN Dipendente as D ON C.id_dip = D.id_dip \
+         JOIN Sede as S ON D.id_sede = S.id_sede \
+         GROUP BY S.id_sede, C.data_firma \
+         HAVING C.data_firma < $1::date",
+
         "SELECT * FROM progetto"
     };
 
     do {
         cout << "[1] Conta i moduli assegnati a tutti i dipendenti di una provincia" << endl;
-        cout << "[2] Test" << endl;
+        cout << "[2] Conta i contratti firmati in tutte le sedi prima di una certa data" << endl;
+        cout << "[3] Test" << endl;
         cout << "[6] Esci" << endl;
         cout << "Seleziona l'opzione: ";
         cin >> input;
@@ -49,6 +56,13 @@ int main(int argc, char* argv[]) {
                 PQclear(res);
                 break;
             case 2:
+                cout << "Parametro = Data (Formato: AAAA-MM-GG)" << endl;
+                res = paramExec(conn, queries, input);
+                checkResults(res, conn);
+                prettyPrint(res);
+                PQclear(res);
+                break;
+            case 3:
                 res = PQexec(conn, queries[input-1].c_str());
                 checkResults(res, conn);
                 prettyPrint(res);
