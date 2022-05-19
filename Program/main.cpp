@@ -101,12 +101,13 @@ PGconn* tryConn(const char* host, const char* user, const char* db, const char* 
 }
 
 PGresult* paramExec(PGconn* conn, string queries[], int input) {
-    PGresult* stmt = PQprepare(conn, "queryParam", queries[input-1].c_str(), 1, NULL);
+    PGresult* stmt = PQprepare(conn, "queryParam" + input, queries[input-1].c_str(), 1, NULL);
     string parametro;
     cout << "Inserire il parametro: ";
     cin >> parametro;
     const char* param = parametro.c_str();
-    return PQexecPrepared(conn, "queryParam", 1, &param, NULL, 0, 0);
+    cout << param << endl;
+    return PQexecPrepared(conn, "queryParam" + input, 1, &param, NULL, 0, 0);
 }
 
 void checkResults(PGresult* res, const PGconn* conn) {
