@@ -2,18 +2,18 @@
 
 
 --      ELIMINAZIONE DELLE TABELLE SE GIA ESISTENTI     --
-DROP TABLE IF EXISTS Sede CASCADE;
-DROP TABLE IF EXISTS Dipendente CASCADE;
-DROP TABLE IF EXISTS Transazione CASCADE;
-DROP TABLE IF EXISTS Retribuzioni CASCADE;
-DROP TABLE IF EXISTS Cliente CASCADE;
-DROP TABLE IF EXISTS Accordo CASCADE;
-DROP TABLE IF EXISTS Valutazione CASCADE;
-DROP TABLE IF EXISTS Progetto CASCADE;
-DROP TABLE IF EXISTS Modulo CASCADE;
-DROP TABLE IF EXISTS Assegnazione CASCADE;
-DROP TABLE IF EXISTS Test CASCADE;
-DROP TABLE IF EXISTS Contratto CASCADE;
+DROP TABLE IF EXISTS Test;
+DROP TABLE IF EXISTS Assegnazione;
+DROP TABLE IF EXISTS Valutazione;
+DROP TABLE IF EXISTS Accordo;
+DROP TABLE IF EXISTS Contratto;
+DROP TABLE IF EXISTS Cliente;
+DROP TABLE IF EXISTS Retribuzioni;
+DROP TABLE IF EXISTS Transazione;
+DROP TABLE IF EXISTS Modulo;
+DROP TABLE IF EXISTS Progetto;
+DROP TABLE IF EXISTS Dipendente;
+DROP TABLE IF EXISTS Sede;
 
 
 
@@ -53,6 +53,26 @@ CREATE TABLE Dipendente (
 	UNIQUE (id_dip),
     PRIMARY KEY (id_dip, id_sede),
     FOREIGN KEY (id_sede) REFERENCES Sede(id_sede) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+--TABELLA PROGETTO
+CREATE TABLE Progetto (
+	id_prog INT NOT NULL,
+	id_manager INT,
+	nome_prog VARCHAR(20) NOT NULL,
+	descrizione VARCHAR(100),
+	data_inizio DATE,
+	PRIMARY KEY (id_prog),
+	FOREIGN KEY (id_manager) REFERENCES Dipendente(id_dip)
+);
+
+--TABELLA MODULO
+CREATE TABLE Modulo (
+	id_modulo INT NOT NULL,
+	id_prog INT NOT NULL,
+	UNIQUE (id_modulo),
+	PRIMARY KEY (id_modulo, id_prog),
+	FOREIGN KEY (id_prog) REFERENCES Progetto(id_prog) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 --TABELLA TRANSAZIONE
@@ -102,26 +122,6 @@ CREATE TABLE Valutazione (
     PRIMARY KEY (id_dip, id_prog),
     FOREIGN KEY (id_dip) REFERENCES Dipendente (id_dip),
     FOREIGN KEY (id_prog) REFERENCES Progetto (id_prog)
-);
-
---TABELLA PROGETTO
-CREATE TABLE Progetto (
-	id_prog INT NOT NULL,
-	id_manager INT,
-	nome_prog VARCHAR(20) NOT NULL,
-	descrizione VARCHAR(100),
-	data_inizio DATE,
-	PRIMARY KEY (id_prog),
-	FOREIGN KEY (id_manager) REFERENCES Dipendente(id_dip)
-);
-
---TABELLA MODULO
-CREATE TABLE Modulo (
-	id_modulo INT NOT NULL,
-	id_prog INT NOT NULL,
-	UNIQUE (id_modulo),
-	PRIMARY KEY (id_modulo, id_prog),
-	FOREIGN KEY (id_prog) REFERENCES Progetto(id_prog) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 --TABELLA ASSEGNAZIONE
@@ -214,6 +214,64 @@ VALUES
     (699, 312, 'Melania', 'Pagliarello', 'Manager Generale', '1998-5-30'),
     (865, 389, 'Eusebia', 'Sammaritano', 'Manager Generale', '1973-10-13'),
     (698, 437, 'Walter', 'Hdada', 'Manager Generale', '1998-6-30');
+	
+--INSERIMENTO TABELLA PROGETTO
+INSERT INTO Progetto(id_prog, id_manager, nome_prog, descrizione, data_inizio)
+VALUES
+	(4239, 543, 'LWJGL', 'Libreria Java ottimizzata per sviluppo giochi', '2020-10-11'),
+	(1028, 677, 'AirScan', 'Software per elaborazione dati condizioni dell''aria', '2020-09-11'),
+	(3943, 334, 'ATM Intesa', 'Software ATM per banche Intesa Sanpaolo', '2021-12-16'),
+	(5487, 124, 'MedData', 'Server Database + Front-end per ospedali', '2021-05-06'),
+	(8912, 979, 'MathGFX', 'Motore grafico per Dip. di Matematica basato su OpenGL', '2020-05-20'),
+	(9302, NULL, 'EZ Contability', 'Software di contabilita'' per azienda privata', NULL),
+	(6923, NULL, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', NULL),
+	(4942, NULL, 'KLogs', 'Software di logging interno', NULL),
+	(9455, NULL, 'Bowling Manager', 'Software di amministrazione sale da Bowling', NULL),
+	(7738, NULL, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', NULL);
+
+--INSERIMENTO TABELLA MODULO
+INSERT INTO Modulo(id_modulo, id_prog)
+VALUES
+	(92610, 4239),
+	(70751, 4239),
+	(26517, 4239),
+	(60255, 4239),
+	(96596, 1028),
+	(99282, 1028),
+	(43392, 1028),
+	(51127, 1028),
+	(47610, 3943),
+	(30592, 3943),
+	(21476, 3943),
+	(57608, 3943),
+	(85126, 5487),
+	(42859, 5487),
+	(41940, 5487),
+	(34954, 5487),
+	(63351, 8912),
+	(38568, 8912),
+	(11343, 8912),
+	(34745, 8912),
+	(86161, 9302),
+	(82973, 9302),
+	(88045, 9302),
+	(41202, 9302),
+	(43103, 6923),
+	(51404, 6923),
+	(25447, 6923),
+	(96485, 6923),
+	(50558, 4942),
+	(12900, 4942),
+	(88449, 4942),
+	(82132, 4942),
+	(82194, 9455),
+	(65102, 9455),
+	(69633, 9455),
+	(94768, 9455),
+	(69420, 7738),
+	(74354, 7738),
+	(25401, 7738),
+	(65628, 7738);
 
 --INSERIMENTO TABELLA TRANSAZIONE
 INSERT INTO Transazione (id_trz, id_sede, tipo_trz, saldo, descrizione, data_trz)
@@ -459,64 +517,6 @@ VALUES
     (234, 4942, FALSE),
     (989, 9455, FALSE),
     (699, 7738, FALSE);
-
---INSERIMENTO TABELLA PROGETTO
-INSERT INTO Progetto(id_prog, id_manager, nome_prog, descrizione, data_inizio)
-VALUES
-	(4239, 543, 'LWJGL', 'Libreria Java ottimizzata per sviluppo giochi', '2020-10-11'),
-	(1028, 677, 'AirScan', 'Software per elaborazione dati condizioni dell''aria', '2020-09-11'),
-	(3943, 334, 'ATM Intesa', 'Software ATM per banche Intesa Sanpaolo', '2021-12-16'),
-	(5487, 124, 'MedData', 'Server Database + Front-end per ospedali', '2021-05-06'),
-	(8912, 979, 'MathGFX', 'Motore grafico per Dip. di Matematica basato su OpenGL', '2020-05-20'),
-	(9302, NULL, 'EZ Contability', 'Software di contabilita'' per azienda privata', NULL),
-	(6923, NULL, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', NULL),
-	(4942, NULL, 'KLogs', 'Software di logging interno', NULL),
-	(9455, NULL, 'Bowling Manager', 'Software di amministrazione sale da Bowling', NULL),
-	(7738, NULL, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', NULL);
-
---INSERIMENTO TABELLA MODULO
-INSERT INTO Modulo(id_modulo, id_prog)
-VALUES
-	(92610, 4239),
-	(70751, 4239),
-	(26517, 4239),
-	(60255, 4239),
-	(96596, 1028),
-	(99282, 1028),
-	(43392, 1028),
-	(51127, 1028),
-	(47610, 3943),
-	(30592, 3943),
-	(21476, 3943),
-	(57608, 3943),
-	(85126, 5487),
-	(42859, 5487),
-	(41940, 5487),
-	(34954, 5487),
-	(63351, 8912),
-	(38568, 8912),
-	(11343, 8912),
-	(34745, 8912),
-	(86161, 9302),
-	(82973, 9302),
-	(88045, 9302),
-	(41202, 9302),
-	(43103, 6923),
-	(51404, 6923),
-	(25447, 6923),
-	(96485, 6923),
-	(50558, 4942),
-	(12900, 4942),
-	(88449, 4942),
-	(82132, 4942),
-	(82194, 9455),
-	(65102, 9455),
-	(69633, 9455),
-	(94768, 9455),
-	(69420, 7738),
-	(74354, 7738),
-	(25401, 7738),
-	(65628, 7738);
 
 --INSERIMENTO TABELLA ASSEGNAZIONE
 INSERT INTO Assegnazione (id_dip, id_modulo)
