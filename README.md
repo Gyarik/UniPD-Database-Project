@@ -19,3 +19,5 @@ Comando per l'esecuzione:
 ```
 .\program [HOST] [USERNAME] [DBNAME] [PASSWORD] [PORT]
 ``` 
+
+https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Fi-love-lean-meme-lean-cat-loves-lean-purple-drank-gif-24893809&psig=AOvVaw387dVZGavSXABxGv5hfvRp&ust=1653231930339000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOCk9oHv8PcCFQAAAAAdAAAAABAD
