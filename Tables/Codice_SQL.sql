@@ -9,35 +9,17 @@ DROP TABLE IF EXISTS Accordo;
 DROP TABLE IF EXISTS Contratto;
 DROP TABLE IF EXISTS Cliente;
 DROP TABLE IF EXISTS Retribuzioni;
-<<<<<<< HEAD
 DROP TABLE IF EXISTS Modulo;
 DROP TABLE IF EXISTS Progetto;
 DROP TABLE IF EXISTS Dipendente;
 DROP TABLE IF EXISTS Transazione;
 DROP TABLE IF EXISTS Sede;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 DROP TABLE IF EXISTS Transazione;
 DROP TABLE IF EXISTS Modulo;
 DROP TABLE IF EXISTS Progetto;
 DROP TABLE IF EXISTS Dipendente;
 DROP TABLE IF EXISTS Sede;
->>>>>>> 87746a3f6694f1b57290a1f5c51aafe5b0f178d4
+
 
 
 
@@ -199,7 +181,7 @@ INSERT INTO Dipendente(id_dip, id_sede, nome, cognome, tipologia, data_nascita)
 VALUES
     (212, 389, 'Ivan', 'Ocardi', 'Sviluppatore', '1990-4-16'),
     (423, 437, 'Leonardo', 'Gallenzi', 'Manager Generale', '1974-8-20'),
-    (675, 594, 'Vanessa', 'Masciangoli', 'Addetto Marketing', '1998-8-29'),
+    (675, 437, 'Vanessa', 'Masciangoli', 'Addetto Marketing', '1998-8-29'),
     (764, 239, 'Enrica', 'Semilla', 'Sviluppatore', '1995-2-16'),
     (234, 312, 'Dionigi', 'Neffati', 'Manager Generale', '1994-2-18'),
     (119, 389, 'Ginevra', 'Grandia', 'Sviluppatore', '1992-7-25'),
