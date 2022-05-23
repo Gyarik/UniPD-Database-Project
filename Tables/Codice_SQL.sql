@@ -230,6 +230,9 @@ VALUES
 	(3943, 334, 'ATM Intesa', 'Software ATM per banche Intesa Sanpaolo', '2021-12-16'),
 	(5487, 124, 'MedData', 'Server Database + Front-end per ospedali', '2021-05-06'),
 	(8912, 979, 'MathGFX', 'Motore grafico per Dip. di Matematica basato su OpenGL', '2020-05-20'),
+	(5634, 979, 'MathSolver', 'Applicazione per risolvere problemi matematici complessi', '2022-05-20'),
+	(9183, 677, 'GitPublisher', 'App per creare repository automatiche GitHub', '2019-06-22'),
+	(2742, 543, 'PrePost', 'Software per la compilazione automatica di Pre e Post nei codici', '2020-03-12'),
 	(9302, NULL, 'EZ Contability', 'Software di contabilita'' per azienda privata', NULL),
 	(6923, NULL, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', NULL),
 	(4942, NULL, 'KLogs', 'Software di logging interno', NULL),
@@ -522,6 +525,9 @@ VALUES
     (989, 3943, TRUE),
     (699, 5487, TRUE),
     (865, 8912, TRUE),
+    (989, 5634, TRUE),
+    (677, 9183, TRUE),
+    (677, 2742, TRUE),
     (698, 9302, FALSE),
     (423, 6923, FALSE),
     (234, 4942, FALSE),
@@ -530,7 +536,7 @@ VALUES
     (423, 3473, FALSE),
     (423, 9832, FALSE),
     (423, 2811, FALSE);
-
+    
 --INSERIMENTO TABELLA ASSEGNAZIONE
 INSERT INTO Assegnazione (id_dip, id_modulo)
 VALUES
