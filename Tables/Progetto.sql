@@ -21,4 +21,7 @@ VALUES
 	(6923, NULL, 'Vera Linux', 'Distribuzione Linux basata su kernel LTS', NULL),
 	(4942, NULL, 'KLogs', 'Software di logging interno', NULL),
 	(9455, NULL, 'Bowling Manager', 'Software di amministrazione sale da Bowling', NULL),
-	(7738, NULL, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', NULL);
+	(7738, NULL, 'Emu32', 'Emulatore applicazioni 32-bit su sistemi a 64-bit', NULL),
+	(3473, NULL, 'EmuDS', 'Emulatore ufficiale per nintendo DS', NULL),
+	(9832, NULL, 'CountGas', 'Software che tiene conto delle oscillazioni di mercato del carburante', NULL),
+	(2811, NULL, 'EasyFork', 'Permette di forkare le repo di github senza notifica', NULL);
