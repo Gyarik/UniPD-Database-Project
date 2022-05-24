@@ -19,25 +19,35 @@ int main(int argc, char* argv[]) {
     PGresult* res = nullptr;
     int input;
 
-    string queries[4] = {
+    string queries[5] = {
 
         "SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia \
          FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip \
 		 JOIN sede ON dipendente.id_sede = sede.id_sede \
          WHERE provincia = $1::varchar \
          GROUP BY dipendente.id_dip, cognome, nome, citta, provincia \
-         ORDER BY moduli DESC",
+         ORDER BY moduli DESC;",
 
         "SELECT COUNT (*) as Contratti, S.id_sede, C.data_firma \
          FROM Contratto as C JOIN Dipendente as D ON C.id_dip = D.id_dip \
          JOIN Sede as S ON D.id_sede = S.id_sede \
          GROUP BY S.id_sede, C.data_firma \
-         HAVING C.data_firma < $1::date",
+         HAVING C.data_firma < $1::date;",
 
         "SELECT d.tipologia, -1* ROUND(AVG(t.saldo), 2) AS \"Stipendio medio per ruolo\" \
          FROM Dipendente as d JOIN Retribuzioni as r ON d.id_dip = r.id_dip \
          JOIN Transazione as t ON t.id_trz = r.id_trz \
          GROUP BY d.tipologia;",
+
+        "SELECT v.esito , d.id_dip, d.nome, d.cognome \
+         FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip \
+         GROUP BY v.esito, d.id_dip, d.nome, d.cognome \
+         HAVING v.esito = 'FALSE' AND COUNT(d.id_dip) > 3 \
+         UNION \
+         SELECT v.esito, d.id_dip, d.nome, d.cognome \
+         FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip \
+         GROUP BY v.esito,d.id_dip, d.nome, d.cognome \
+         HAVING v.esito = 'TRUE' AND COUNT(d.id_dip) > 1;",
 
         "SELECT * FROM progetto"
     };
@@ -46,7 +56,8 @@ int main(int argc, char* argv[]) {
         cout << "[1] Conta i moduli assegnati a tutti i dipendenti di una provincia" << endl;
         cout << "[2] Conta i contratti firmati in tutte le sedi prima di una certa data" << endl;
         cout << "[3] Calcola lo stipendio medio per categoria di dipendente" << endl;
-        cout << "[4] Test" << endl;
+        cout << "[4] Stampa nome e cognome dei dipendenti che hanno valutato positivamente piu di un progetto o negativamente piu di tre" << endl;
+        cout << "[5] Test" << endl;
         cout << "[6] Esci" << endl;
         cout << "Seleziona l'opzione: ";
         cin >> input;
@@ -73,6 +84,12 @@ int main(int argc, char* argv[]) {
                 PQclear(res);
                 break;
             case 4:
+                res = PQexec(conn, queries[input-1].c_str());
+                checkResults(res, conn);
+                prettyPrint(res);
+                PQclear(res);
+                break;
+            case 5:
                 res = PQexec(conn, queries[input-1].c_str());
                 checkResults(res, conn);
                 prettyPrint(res);
