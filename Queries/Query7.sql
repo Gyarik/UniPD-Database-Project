@@ -11,7 +11,7 @@ CREATE VIEW max_stipendio_per_sede as
 
 
 CREATE VIEW stipendi_uscite as
-    SELECT t.id_sede, s.via, s.citta, SUM(t.saldo) as Uscite_Totali, ms.massimo_saldo as Stipendio_Massimo
+    SELECT t.id_sede, s.via, s.citta, SUM(t.saldo) as Uscite_Totali, -1* ms.massimo_saldo as Stipendio_Massimo
     FROM max_stipendio_per_sede as ms JOIN Transazione as t ON ms.id_sede = t.id_sede
         JOIN Sede as s ON s.id_sede = t.id_sede
     GROUP BY t.id_sede, s.via, s.citta, t.tipo_trz, ms.massimo_saldo
