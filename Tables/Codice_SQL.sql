@@ -2,6 +2,9 @@
 
 
 --      ELIMINAZIONE DELLE TABELLE SE GIA ESISTENTI     --
+DROP VIEW IF EXISTS stipendi_uscite;
+DROP VIEW IF EXISTS max_stipendio_per_sede;
+
 DROP TABLE IF EXISTS Test;
 DROP TABLE IF EXISTS Assegnazione;
 DROP TABLE IF EXISTS Valutazione;
@@ -19,6 +22,7 @@ DROP TABLE IF EXISTS Modulo;
 DROP TABLE IF EXISTS Progetto;
 DROP TABLE IF EXISTS Dipendente;
 DROP TABLE IF EXISTS Sede;
+
 
 
 
@@ -182,7 +186,7 @@ INSERT INTO Dipendente(id_dip, id_sede, nome, cognome, tipologia, data_nascita)
 VALUES
     (212, 389, 'Ivan', 'Ocardi', 'Sviluppatore', '1990-4-16'),
     (423, 437, 'Leonardo', 'Gallenzi', 'Manager Generale', '1974-8-20'),
-    (675, 437, 'Vanessa', 'Masciangoli', 'Addetto Marketing', '1998-8-29'),
+    (675, 594, 'Vanessa', 'Masciangoli', 'Addetto Marketing', '1998-8-29'),
     (764, 239, 'Enrica', 'Semilla', 'Sviluppatore', '1995-2-16'),
     (234, 312, 'Dionigi', 'Neffati', 'Manager Generale', '1994-2-18'),
     (119, 389, 'Ginevra', 'Grandia', 'Sviluppatore', '1992-7-25'),
@@ -220,7 +224,35 @@ VALUES
     (589, 239, 'Crescenzo', 'Sciannamè', 'Addetto Marketing', '1973-9-24'),
     (699, 312, 'Melania', 'Pagliarello', 'Manager Generale', '1998-5-30'),
     (865, 389, 'Eusebia', 'Sammaritano', 'Manager Generale', '1973-10-13'),
-    (698, 437, 'Walter', 'Hdada', 'Manager Generale', '1998-6-30');
+    (698, 437, 'Walter', 'Hdada', 'Manager Generale', '1998-6-30'),
+    (636, 594, 'Ruggero', 'Vadini', 'Addetto Marketing', '1975-10-30'),
+    (652, 239, 'Saveria', 'Hercolani', 'Sviluppatore', '2003-9-8'),
+    (430, 312, 'Giuditta', 'Ivani', 'Tester', '1974-6-11'),
+    (122, 389, 'Andreina', 'Ghy', 'Manager Progetto', '1991-3-29'),
+    (869, 437, 'Crescente', 'Lesley', 'Sviluppatore', '1973-4-30'),
+    (326, 594, 'Brigida', 'Tenan', 'Tester', '1984-3-30'),
+    (158, 239, 'Elena', 'Isaurini', 'Manager Progetto', '1996-12-30'),
+    (405, 312, 'Miranda', 'Bansil', 'Addetto Marketing', '1979-4-1'),
+    (156, 389, 'Elio', 'Posilippo', 'Sviluppatore', '1983-1-25'),
+    (688, 437, 'Ottavia', 'Pastorcich', 'Manager Progetto', '1986-1-10'),
+    (955, 594, 'Rocco', 'Modello', 'Manager Generale', '1999-4-9'),
+    (932, 239, 'Romano', 'Maiorella', 'Tester', '1998-3-13'),
+    (488, 312, 'Selene', 'Cuciubina', 'Sviluppatore', '1981-6-2'),
+    (492, 389, 'Fulgenzio', 'Unterhuber', 'Tester', '1982-2-28'),
+    (489, 437, 'Diletta', 'Zoldester', 'Sviluppatore', '1990-2-23'),
+    (520, 594, 'Vittorio', 'Tovaiolo', 'Manager Progetto', '1989-4-18'),
+    (684, 239, 'Alceste', 'Moschitto', 'Tester', '1989-3-31'),
+    (340, 312, 'Geltrude', 'Patragnoni', 'Sviluppatore', '1987-1-20'),
+    (417, 389, 'Concordia', 'Zucchi', 'Addetto Marketing', '1979-8-9'),
+    (270, 437, 'Salvatore', 'Nitride', 'Manager Progetto', '1980-11-30'),
+    (101, 594, 'Ireneo', 'Chiriac', 'Sviluppatore', '1995-2-26'),
+    (664, 239, 'Guglielmina', 'Moirengo', 'Tester', '1978-9-11'),
+    (513, 312, 'Orfeo', 'Pezzani', 'Addetto Marketing', '1978-11-5'),
+    (714, 389, 'Silvio', 'Lucciardello', 'Sviluppatore', '1986-11-18'),
+    (878, 437, 'Onorato', 'Agelli', 'Manager Progetto', '1976-4-14'),
+    (422, 594, 'Rebecca', 'Mazzolai', 'Manager Generale', '1993-4-3'),
+    (559, 239, 'Urania', 'Ducci', 'Sviluppatore', '1982-6-9'),
+    (759, 312, 'Narciso', 'Sassini', 'Tester', '1988-2-19');
 	
 --INSERIMENTO TABELLA PROGETTO
 INSERT INTO Progetto(id_prog, id_manager, nome_prog, descrizione, data_inizio)
@@ -536,7 +568,7 @@ VALUES
     (423, 3473, FALSE),
     (423, 9832, FALSE),
     (423, 2811, FALSE);
-    
+
 --INSERIMENTO TABELLA ASSEGNAZIONE
 INSERT INTO Assegnazione (id_dip, id_modulo)
 VALUES
