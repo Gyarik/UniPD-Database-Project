@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     PGresult* res = nullptr;
     int input;
 
-    string queries[5] = {
+    string queries[6] = {
 
         "SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia \
          FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip \
@@ -63,7 +63,13 @@ int main(int argc, char* argv[]) {
          GROUP BY t.id_sede, s.via, s.citta, t.tipo_trz, ms.massimo_saldo \
 	     HAVING t.tipo_trz = 'Uscita' \
 	     ORDER BY SUM(t.saldo); \
-         SELECT * FROM stipendi_uscite;"
+         SELECT * FROM stipendi_uscite;",
+
+        "SELECT p.nome_prog, a.id_modulo, COUNT(*) as numero_dip \
+         FROM Progetto as p JOIN Modulo as m ON p.id_prog = m.id_prog \
+         JOIN Assegnazione as a ON a.id_modulo = m.id_modulo \
+         GROUP BY p.nome_prog, a.id_modulo \
+         HAVING COUNT(*) >= $1::integer;"
 
     };
 
@@ -73,7 +79,8 @@ int main(int argc, char* argv[]) {
         cout << "[3] Calcola lo stipendio medio per categoria di dipendente" << endl;
         cout << "[4] Stampa nome e cognome dei dipendenti che hanno valutato positivamente piu di un progetto o negativamente piu di tre" << endl;
         cout << "[5] Classifica delle sedi che hanno le uscite maggiori" << endl;
-        cout << "[6] Esci" << endl;
+        cout << "[6] Nomi dei progetti e moduli in cui vi lavorano almeno N dipendenti" << endl;
+        cout << "[7] Esci" << endl;
         cout << "Seleziona l'opzione: ";
         cin >> input;
 
@@ -111,13 +118,20 @@ int main(int argc, char* argv[]) {
                 PQclear(res);
                 break;
             case 6:
+                cout << "Parametro = N dipendenti" << endl;
+                res = paramExec(conn, queries, input);
+                checkResults(res, conn);
+                prettyPrint(res);
+                PQclear(res);
+                break;
+            case 7:
                 break;
             default:
                 cout << "Errore di input!" << endl;
                 break;
         }
 
-    } while(input != 6);
+    } while(input != 7);
 
     PQfinish(conn);
 
@@ -148,7 +162,6 @@ PGresult* paramExec(PGconn* conn, string queries[], int input) {
     cout << "Inserire il parametro: ";
     cin >> parametro;
     const char* param = parametro.c_str();
-    cout << param << endl;
     return PQexecPrepared(conn, "queryParam" + input, 1, &param, NULL, 0, 0);
 }
 
