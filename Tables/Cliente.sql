@@ -17,5 +17,16 @@ VALUES
     ('56720480328', 'ACE Chemicals'),
     ('48503850165', 'Super Track'),
     ('70779410680', 'Marte Progetti'),
-    ('38481280865', 'Falcone Industries');
+    ('38481280865', 'Falcone Industries'),
+    ('41960260556', 'Mc Albettone'),
+    ('54801450153', 'Associazione Perarockers Asd'),
+    ('50887600182', 'Fun Bike'),
+    ('92031230151', 'A.S.D. Sant ambrogio Parabiago'),
+    ('09469971007', 'Associazione Sportiva Guida Sicura'),
+    ('01301140552', 'Sistemi Assicurativi E Finanziari Srl'),
+    ('09949001003', 'Locim S.R.L.'),
+    ('03410440964', 'Desideri Assicurazioni Srl'),
+    ('01286971211', 'Stazione Climatica Bianchi Srl'),
+    ('01285800189', 'Clinica Veterinaria Croce Azzurra'),
+    ('01042950335', 'Assieuropa S.A.S Di Edoardo Agnelli & C');
 

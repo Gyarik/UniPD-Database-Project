@@ -19,4 +19,11 @@ VALUES
     (3, '22337910206', 609, 'Contratto di estensione partnership fino al 2024', '2019-5-15'),
     (4, '48503850165', 890, 'Partnership stretta con azienda per 2 anni', '2022-3-2'),
     (5, '56720480328', 173, 'Contratto di produzione silicio per chip', '2009-4-12'),
-    (6, '25811980355', 173, 'Contratto per collaborazione sul software gestionale NEXTOR', '2022-1-21');
+    (6, '25811980355', 173, 'Contratto per collaborazione sul software gestionale NEXTOR', '2022-1-21'),
+    (7, '38481280865', 890, 'Contratto creazione software', '2022-3-10'),
+    (8, '41960260556', 173, 'Contratto partnership', '2021-10-23'),
+    (9, '54801450153', 609, 'Contratto di estensione partnership', '2019-6-17'),
+    (10, '09949001003', 890, 'Partnership stretta con azienda per 5 anni', '2020-8-10'),
+    (11, '01301140552', 609, 'Contratto per la creazione applicazione web', '2018-4-19'),
+    (12, '03410440964', 309, 'Contratto per la produzione di codici applicativi', '2022-7-8'),
+    (13, '01042950335', 309, 'Partnership stretta per 3 anni', '2022-8-27');

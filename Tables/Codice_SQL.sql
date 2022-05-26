@@ -1587,7 +1587,18 @@ VALUES
     ('56720480328', 'ACE Chemicals'),
     ('48503850165', 'Super Track'),
     ('70779410680', 'Marte Progetti'),
-    ('38481280865', 'Falcone Industries');
+    ('38481280865', 'Falcone Industries'),
+    ('41960260556', 'Mc Albettone'),
+    ('54801450153', 'Associazione Perarockers Asd'),
+    ('50887600182', 'Fun Bike'),
+    ('92031230151', 'A.S.D. Sant ambrogio Parabiago'),
+    ('09469971007', 'Associazione Sportiva Guida Sicura'),
+    ('01301140552', 'Sistemi Assicurativi E Finanziari Srl'),
+    ('09949001003', 'Locim S.R.L.'),
+    ('03410440964', 'Desideri Assicurazioni Srl'),
+    ('01286971211', 'Stazione Climatica Bianchi Srl'),
+    ('01285800189', 'Clinica Veterinaria Croce Azzurra'),
+    ('01042950335', 'Assieuropa S.A.S Di Edoardo Agnelli & C');
 
 --INSERIMENTO TABELLA ACCORDO
 INSERT INTO Accordo (id_dip, p_iva)
@@ -1597,7 +1608,14 @@ VALUES
     (589, '22337910206'),
     (420, '48503850165'),
     (281, '56720480328'),
-    (281, '25811980355');
+    (281, '25811980355'),
+    (777, '38481280865'),
+    (777, '41960260556'),
+    (347, '54801450153'),
+    (238, '09949001003'),
+    (238, '01301140552'),
+    (741, '03410440964'),
+    (689, '01042950335');
 
 --INSERIMENTO TABELLA VALUTAZIONE
 INSERT INTO Valutazione (id_dip, id_prog, esito)
@@ -1870,4 +1888,11 @@ VALUES
     (3, '22337910206', 609, 'Contratto di estensione partnership fino al 2024', '2019-5-15'),
     (4, '48503850165', 890, 'Partnership stretta con azienda per 2 anni', '2022-3-2'),
     (5, '56720480328', 173, 'Contratto di produzione silicio per chip', '2009-4-12'),
-    (6, '25811980355', 173, 'Contratto per collaborazione sul software gestionale NEXTOR', '2022-1-21');
+    (6, '25811980355', 173, 'Contratto per collaborazione sul software gestionale NEXTOR', '2022-1-21'),
+    (7, '38481280865', 890, 'Contratto creazione software', '2022-3-10'),
+    (8, '41960260556', 173, 'Contratto partnership', '2021-10-23'),
+    (9, '54801450153', 609, 'Contratto di estensione partnership', '2019-6-17'),
+    (10, '09949001003', 890, 'Partnership stretta con azienda per 5 anni', '2020-8-10'),
+    (11, '01301140552', 609, 'Contratto per la creazione applicazione web', '2018-4-19'),
+    (12, '03410440964', 309, 'Contratto per la produzione di codici applicativi', '2022-7-8'),
+    (13, '01042950335', 309, 'Partnership stretta per 3 anni', '2022-8-27');
