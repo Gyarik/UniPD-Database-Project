@@ -1,9 +1,14 @@
 -- CODICE SQL RELATIVO ALLA SOFTWARE HOUSE "KeplerSoftware"
 
 
---      ELIMINAZIONE DELLE TABELLE SE GIA ESISTENTI     --
+--      ELIMINAZIONE DELLE TABELLE E VIEW SE GIA ESISTENTI     --
 DROP VIEW IF EXISTS stipendi_uscite;
 DROP VIEW IF EXISTS max_stipendio_per_sede;
+DROP VIEW IF EXISTS moduli_assegnati;
+DROP VIEW IF EXISTS contratti_stipulati;
+DROP VIEW IF EXISTS stip_medi_ruolo;
+DROP VIEW IF EXISTS valutazione_progetti;
+DROP VIEW IF EXISTS progetti_moduli;
 
 DROP TABLE IF EXISTS Test;
 DROP TABLE IF EXISTS Assegnazione;
@@ -1896,3 +1901,112 @@ VALUES
     (11, '01301140552', 609, 'Contratto per la creazione applicazione web', '2018-4-19'),
     (12, '03410440964', 309, 'Contratto per la produzione di codici applicativi', '2022-7-8'),
     (13, '01042950335', 309, 'Partnership stretta per 3 anni', '2022-8-27');
+
+
+--------------------------INIZIO QUERY--------------------------
+
+
+-------Inizio Query 1-------
+
+--Conteggio dei moduli assegati a tutti i dipendenti di una provincia (nell’esempio la provincia è ‘PO’)
+
+CREATE VIEW moduli_assegnati as
+    SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia
+    FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip
+    JOIN sede ON dipendente.id_sede = sede.id_sede
+    WHERE provincia = 'PO'
+    GROUP BY dipendente.id_dip, cognome, nome, citta, provincia
+    ORDER BY moduli DESC;
+
+-------Fine Query 1-------
+
+
+-------Inizio Query 2-------
+
+--Conteggio dei contratti stipulati, raggruppati per sede, prima di una certa data 
+--(nell’esempio abbiamo preso tutti i contratti prima del 2020)
+
+CREATE VIEW contratti_stipulati as
+    SELECT COUNT (*) as Contratti, S.id_sede, C.data_firma
+    FROM Contratto as C JOIN Dipendente as D ON C.id_dip = D.id_dip
+        JOIN Sede as S ON D.id_sede = S.id_sede
+    GROUP BY S.id_sede, C.data_firma
+    HAVING C.data_firma < '2020-1-1';
+
+-------Fine Query 2-------
+
+
+-------Inzio Query 3-------
+
+--Calcolo della media degli stipendi suddivisi per ruolo
+
+CREATE VIEW stip_medi_ruolo as
+    SELECT d.tipologia, -1* ROUND(AVG(t.saldo), 2) AS "Stipendio medio per ruolo"
+    FROM Dipendente as d JOIN Retribuzioni as r ON d.id_dip = r.id_dip
+    JOIN Transazione as t ON t.id_trz = r.id_trz
+    GROUP BY d.tipologia;
+
+-------Fine Query 3-------
+
+
+-------Inizio Query 4-------
+
+--Selezione dei dipendenti che hanno 
+--valutato negativamente più di 3 progetti oppure positivamente più di uno
+
+CREATE VIEW valutazione_progetti as
+    SELECT v.esito , d.id_dip, d.nome, d.cognome
+    FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
+    GROUP BY v.esito, d.id_dip, d.nome, d.cognome
+    HAVING v.esito = 'FALSE' AND COUNT(*) > 3
+
+    UNION
+
+    SELECT v.esito, d.id_dip, d.nome, d.cognome
+    FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
+    GROUP BY v.esito,d.id_dip, d.nome, d.cognome
+    HAVING v.esito = 'TRUE' AND COUNT(*) > 1;
+
+-------Fine Query 4-------
+
+
+-------Inizio Query 5-------
+
+--Classifica delle sedi identificate per id_sede, citta e via ordinate 
+--per il totale delle loro uscite. Inoltre per ognuna di esse si identifica lo stipendio più alto.
+
+CREATE VIEW max_stipendio_per_sede as
+   SELECT t.id_sede, MIN(t.saldo) as massimo_saldo
+   FROM Transazione as t JOIN Retribuzioni as r ON t.id_trz = r.id_trz
+   GROUP BY t.id_sede, t.tipo_trz
+   HAVING t.tipo_trz = 'Stipendio';
+ 
+CREATE VIEW stipendi_uscite as
+   SELECT t.id_sede, s.via, s.citta, SUM(t.saldo) as Uscite_Totali,
+          -1*ms.massimo_saldo as Stipendio_Massimo
+   FROM max_stipendio_per_sede as ms JOIN Transazione as t 
+          ON ms.id_sede = t.id_sede
+       JOIN Sede as s ON s.id_sede = t.id_sede
+   GROUP BY t.id_sede, s.via, s.citta, t.tipo_trz, ms.massimo_saldo
+   HAVING t.tipo_trz = 'Uscita'
+   ORDER BY SUM(t.saldo);
+
+-------Fine Query 5-------
+
+
+-------Inizio Query 6-------
+--Nome dei progetti in cui relativi moduli vi lavorano 3 o più dipendenti
+
+CREATE VIEW progetti_moduli as
+    SELECT p.nome_prog, a.id_modulo
+    FROM Progetto as p JOIN Modulo as m ON p.id_prog = m.id_prog
+    JOIN Assegnazione as a ON a.id_modulo = m.id_modulo
+    GROUP BY p.nome_prog, a.id_modulo
+    HAVING COUNT(*) >= 3;
+
+-------Fine Query 6-------
+
+
+--------------------------INIZIALIZZAZIONE INDICE--------------------------
+
+CREATE INDEX indice_transazioni ON Transazione (id_trz);
