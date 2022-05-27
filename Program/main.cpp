@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
         cout << "[1] Conta i moduli assegnati a tutti i dipendenti di una provincia" << endl;
         cout << "[2] Conta i contratti firmati in tutte le sedi prima di una certa data" << endl;
         cout << "[3] Calcola lo stipendio medio per categoria di dipendente" << endl;
-        cout << "[4] Stampa nome e cognome dei dipendenti che hanno valutato positivamente piu di un progetto o negativamente piu di tre" << endl;
+        cout << "[4] Stampa nome e cognome dei dipendenti che hanno valutato positivamente piu' di un progetto o negativamente piu' di tre" << endl;
         cout << "[5] Classifica delle sedi che hanno le uscite maggiori" << endl;
         cout << "[6] Nomi dei progetti e moduli in cui vi lavorano almeno N dipendenti" << endl;
         cout << "[7] Esci" << endl;
@@ -167,7 +167,7 @@ PGresult* paramExec(PGconn* conn, string queries[], int input) {
 
 void checkResults(PGresult* res, const PGconn* conn) {
     if(PQresultStatus(res) != PGRES_TUPLES_OK) {
-        cout << "Inconsistent results!" << PQerrorMessage(conn) << endl;
+        cout << "Inconsistent results! " << PQerrorMessage(conn) << endl;
         PQclear(res);
         exit(1);
     }
