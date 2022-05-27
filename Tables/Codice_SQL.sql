@@ -2009,4 +2009,4 @@ CREATE VIEW progetti_moduli as
 
 --------------------------INIZIALIZZAZIONE INDICE--------------------------
 
-CREATE INDEX indice_transazioni ON Transazione (id_trz);
+CREATE INDEX indice_transazioni ON Transazione (tipo_trz, saldo);
