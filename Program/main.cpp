@@ -1,5 +1,9 @@
 #include <iostream>
-#include "dependencies/include/libpq-fe.h"
+#ifdef __linux__
+    #include "libpq-fe.h"
+#elif _WIN32
+    #include "dependencies/include/libpq-fe.h"
+#endif
 
 using namespace std;
 
