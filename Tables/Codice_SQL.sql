@@ -1910,13 +1910,12 @@ VALUES
 
 --Conteggio dei moduli assegati a tutti i dipendenti di una provincia (nell’esempio la provincia è ‘PO’)
 
-CREATE VIEW moduli_assegnati as
-    SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia
-    FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip
-    JOIN sede ON dipendente.id_sede = sede.id_sede
-    WHERE provincia = 'PO'
-    GROUP BY dipendente.id_dip, cognome, nome, citta, provincia
-    ORDER BY moduli DESC;
+SELECT COUNT(*) as moduli, dipendente.id_dip, cognome, nome, citta, provincia
+FROM assegnazione JOIN dipendente ON assegnazione.id_dip = dipendente.id_dip
+JOIN sede ON dipendente.id_sede = sede.id_sede
+WHERE provincia = 'PO'
+GROUP BY dipendente.id_dip, cognome, nome, citta, provincia
+ORDER BY moduli DESC;
 
 -------Fine Query 1-------
 
@@ -1926,12 +1925,12 @@ CREATE VIEW moduli_assegnati as
 --Conteggio dei contratti stipulati, raggruppati per sede, prima di una certa data 
 --(nell’esempio abbiamo preso tutti i contratti prima del 2020)
 
-CREATE VIEW contratti_stipulati as
-    SELECT COUNT (*) as Contratti, S.id_sede, C.data_firma
-    FROM Contratto as C JOIN Dipendente as D ON C.id_dip = D.id_dip
-        JOIN Sede as S ON D.id_sede = S.id_sede
-    GROUP BY S.id_sede, C.data_firma
-    HAVING C.data_firma < '2020-1-1';
+
+SELECT COUNT (*) as Contratti, S.id_sede, C.data_firma
+FROM Contratto as C JOIN Dipendente as D ON C.id_dip = D.id_dip
+    JOIN Sede as S ON D.id_sede = S.id_sede
+GROUP BY S.id_sede, C.data_firma
+HAVING C.data_firma < '2020-1-1';
 
 -------Fine Query 2-------
 
@@ -1940,11 +1939,10 @@ CREATE VIEW contratti_stipulati as
 
 --Calcolo della media degli stipendi suddivisi per ruolo
 
-CREATE VIEW stip_medi_ruolo as
-    SELECT d.tipologia, -1* ROUND(AVG(t.saldo), 2) AS "Stipendio medio per ruolo"
-    FROM Dipendente as d JOIN Retribuzioni as r ON d.id_dip = r.id_dip
-    JOIN Transazione as t ON t.id_trz = r.id_trz
-    GROUP BY d.tipologia;
+SELECT d.tipologia, -1* ROUND(AVG(t.saldo), 2) AS "Stipendio medio per ruolo"
+FROM Dipendente as d JOIN Retribuzioni as r ON d.id_dip = r.id_dip
+JOIN Transazione as t ON t.id_trz = r.id_trz
+GROUP BY d.tipologia;
 
 -------Fine Query 3-------
 
@@ -1954,18 +1952,18 @@ CREATE VIEW stip_medi_ruolo as
 --Selezione dei dipendenti che hanno 
 --valutato negativamente più di 3 progetti oppure positivamente più di uno
 
-CREATE VIEW valutazione_progetti as
-    SELECT v.esito , d.id_dip, d.nome, d.cognome
-    FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
-    GROUP BY v.esito, d.id_dip, d.nome, d.cognome
-    HAVING v.esito = 'FALSE' AND COUNT(*) > 3
 
-    UNION
+SELECT v.esito , d.id_dip, d.nome, d.cognome
+FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
+GROUP BY v.esito, d.id_dip, d.nome, d.cognome
+HAVING v.esito = 'FALSE' AND COUNT(*) > 3
 
-    SELECT v.esito, d.id_dip, d.nome, d.cognome
-    FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
-    GROUP BY v.esito,d.id_dip, d.nome, d.cognome
-    HAVING v.esito = 'TRUE' AND COUNT(*) > 1;
+UNION
+
+SELECT v.esito, d.id_dip, d.nome, d.cognome
+FROM Dipendente as d JOIN Valutazione as v ON d.id_dip = v.id_dip
+GROUP BY v.esito,d.id_dip, d.nome, d.cognome
+HAVING v.esito = 'TRUE' AND COUNT(*) > 1;
 
 -------Fine Query 4-------
 
@@ -1997,12 +1995,11 @@ CREATE VIEW stipendi_uscite as
 -------Inizio Query 6-------
 --Nome dei progetti in cui relativi moduli vi lavorano 3 o più dipendenti
 
-CREATE VIEW progetti_moduli as
-    SELECT p.nome_prog, a.id_modulo
-    FROM Progetto as p JOIN Modulo as m ON p.id_prog = m.id_prog
-    JOIN Assegnazione as a ON a.id_modulo = m.id_modulo
-    GROUP BY p.nome_prog, a.id_modulo
-    HAVING COUNT(*) >= 3;
+SELECT p.nome_prog, a.id_modulo
+FROM Progetto as p JOIN Modulo as m ON p.id_prog = m.id_prog
+JOIN Assegnazione as a ON a.id_modulo = m.id_modulo
+GROUP BY p.nome_prog, a.id_modulo
+HAVING COUNT(*) >= 3;
 
 -------Fine Query 6-------
 
