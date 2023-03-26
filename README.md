@@ -1,5 +1,5 @@
 # Progetto Database UniPD A.A. 2021-22
-Se vedete robe brutte è perché dobbiamo far felice il professore &#128128;&#128684;
+
 ## Compilazione
 A giudicare dai progetti dell'anno scorso il programma dovrebbe funzionare per Windows (🤢) quindi per ora lo faccio funzionare solo per quello.
 
@@ -20,4 +20,4 @@ Comando per l'esecuzione:
 .\program [HOST] [USERNAME] [DBNAME] [PASSWORD] [PORT]
 ``` 
 
-![](https://github.com/Gyarik/UniPD-Database-Project/blob/master/i-love-lean-meme-lean.gif)
+
