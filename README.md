@@ -1,4 +1,5 @@
 # Progetto Database UniPD A.A. 2021-22
+Progetto svolto in collaborazione tra  [@SamuelScara](https://github.com/SamuelScara) e  [@Gyarik](https://github.com/Gyarik)
 
 ## Compilazione
 A giudicare dai progetti dell'anno scorso il programma dovrebbe funzionare per Windows (🤢) quindi per ora lo faccio funzionare solo per quello.
